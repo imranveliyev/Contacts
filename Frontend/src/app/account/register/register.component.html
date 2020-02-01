@@ -1,0 +1,48 @@
+<h1>Login</h1>
+
+<div class="row my-4">
+
+    <div class="col-md-6">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input formControlName="email" id="email" type="email" class="form-control">
+                <ng-container *ngIf="email.touched">
+                    <span *ngIf="email.errors?.required" class="text-danger">Email is required!</span>
+                    <span *ngIf="email.errors?.email" class="text-danger">Email is not valid!</span>
+                    <span *ngIf="email.errors?.forbidden" class="text-danger">{{email.errors.forbidden}}</span>
+
+                    <span *ngIf="email.pending" class="text-muted">Checking...</span>
+                    <span *ngIf="!email.pending && email.errors?.emailTaken" class="text-danger">Email is taken!</span>
+                    <span *ngIf="!email.pending && email.errors == null" class="text-success">Email is available!</span>
+                </ng-container>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input formControlName="password" id="password" type="password" class="form-control">
+                <ng-container *ngIf="password.touched">
+                    <span *ngIf="password.errors?.required" class="text-danger">Password is required!</span>
+                </ng-container>
+            </div>
+
+            <div class="form-group">
+                <label for="passwordConfirmation">Password:</label>
+                <input formControlName="passwordConfirmation" id="passwordConfirmation" type="password" class="form-control">
+                <ng-container *ngIf="passwordConfirmation.touched">
+                    <span *ngIf="passwordConfirmation.errors?.required" class="text-danger">Password is required!</span>
+                    <span *ngIf="registerForm.errors?.sameValue" class="text-danger">Passwords not match!</span>
+                </ng-container>
+            </div>
+
+            <button [disabled]="registerForm.invalid" type="submit" class="btn btn-primary mr-2">Register</button>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <p>{{email.status}}</p>
+        <pre>{{email.errors | json}}</pre>
+    </div>
+
+</div>

@@ -1,0 +1,15 @@
+form {
+    position: relative;
+
+    .list-group {
+        position: absolute;
+        top: 40px;
+        z-index: 999;
+        right: 0px;
+        left: 0px;
+
+        p {
+            margin: 0;
+        }
+    }
+}

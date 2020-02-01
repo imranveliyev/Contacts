@@ -1,0 +1,19 @@
+<div id="modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{title}}</h5>
+                <button (click)="onCancelClick()" type="button" class="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{content}}</p>
+            </div>
+            <div class="modal-footer">
+                <button (click)="onCancelClick()" type="button" class="btn btn-secondary">Close</button>
+                <button (click)="onOkClick()" type="button" class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

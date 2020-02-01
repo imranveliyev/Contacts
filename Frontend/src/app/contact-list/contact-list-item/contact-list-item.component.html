@@ -1,0 +1,6 @@
+<a [routerLink]="['/contact', contact.id]" class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">{{contact.name}} {{contact.surname}}</h5>
+</a>
+<p class="mb-1">Phone: {{contact.phone}}</p>
+<p class="mb-1">Email: {{contact.email || 'none'}}</p>
+<button (click)="onDeleteClick()" class="btn btn-danger">Delete</button>

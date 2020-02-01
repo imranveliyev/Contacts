@@ -1,0 +1,87 @@
+<h1>New Contact</h1>
+
+<div class="row my-4">
+
+    <div class="col-md-6">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input formControlName="name" id="name" type="text" class="form-control">
+                <ng-container *ngIf="name.touched">
+                    <span *ngIf="name.errors?.required" class="text-danger">Name is required!</span>
+                    <span *ngIf="name.errors?.maxlength" class="text-danger">Name length can't be more than 100 symbols!</span>
+                </ng-container>
+            </div>
+
+            <div class="form-group">
+                <label for="surname">Surname:</label>
+                <input formControlName="surname" id="surname" type="text" class="form-control">
+                <ng-container *ngIf="surname.touched">
+                    <span *ngIf="surname.errors?.maxlength" class="text-danger">Surname length cant be more than 100 symbols!</span>
+                </ng-container>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input formControlName="phone" id="phone" type="text" class="form-control">
+                <ng-container *ngIf="phone.touched">
+                    <span *ngIf="phone.errors?.required" class="text-danger">Phone is required!</span>
+                    <span *ngIf="phone.errors?.maxlength" class="text-danger">Phone length cant be more than 100 symbols!</span>
+                    <span *ngIf="phone.errors?.pattern" class="text-danger">Phone is not in a correct format!</span>
+                </ng-container>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input formControlName="email" id="email" type="email" class="form-control">
+                <ng-container *ngIf="email.touched">
+                    <span *ngIf="email.errors?.maxlength" class="text-danger">Email length cant be more than 100 symbols!</span>
+                    <span *ngIf="email.errors?.pattern" class="text-danger">Email is not in a correct format!</span>
+                </ng-container>
+            </div>
+
+            <ng-container formArrayName="additionalPhones">
+                <div *ngFor="let control of additionalPhones.controls; let i = index" class="form-group">
+                    <label>Additional phone {{i+1}}:</label>
+                    <div class="input-group mb-3">
+                        <input [formControlName]="i" class="form-control">
+                        <div class="input-group-append">
+                          <button (click)="onPhoneDeleteClick(i)" class="btn btn-outline-danger" type="button">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            
+            <button type="button" (click)="onAddPhoneClick()" class="btn btn-light w-100 my-4">Add phone</button>
+            <button [disabled]="!contactForm.valid" type="submit" class="btn btn-primary mr-2">Add</button>
+            <button type="reset" class="btn btn-light">Reset</button>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <p>Form status: {{contactForm.status}}</p>
+        <hr>
+
+        <p>Name errors:</p>
+        <pre>{{name.errors | json}}</pre>
+        <hr>
+
+        <p>Surname errors:</p>
+        <pre>{{surname.errors | json}}</pre>
+        <hr>
+
+        <p>Phone errors:</p>
+        <pre>{{phone.errors | json}}</pre>
+        <hr>
+        
+        <p>Email errors:</p>
+        <pre>{{email.errors | json}}</pre>
+        <hr>
+        
+        <p>Result:</p>
+        <pre>{{contactForm.value | json}}</pre>
+        <hr>
+    </div>
+
+</div>

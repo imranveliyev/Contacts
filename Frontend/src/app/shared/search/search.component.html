@@ -1,0 +1,9 @@
+<form [formGroup]="searchForm" class="form-inline">
+    <input (blur)="onBlur()" #searchBox formControlName="phone" class="form-control" type="search" placeholder="Search">
+    <div class="list-group">
+        <a *ngFor="let result of searchResults" [routerLink]="['/contact', result.id]" href="#" class="list-group-item list-group-item-action">
+            <p>{{result.name}} {{result.surname}}</p>
+            <small>{{result.phone}}</small>
+        </a>
+    </div>
+</form>

@@ -1,0 +1,27 @@
+<ng-container *ngIf="contact else loading">
+    <h1>{{contact.name}} {{contact.surname}}</h1>
+
+    <h5>Phone: </h5>
+    <a href="tel:{{contact.phone}}">{{contact.phone}}</a>
+    <hr>
+    
+    <ng-container *ngIf="contact.additionalPhones.length > 0">
+        <h5>Additional phones: </h5>
+        <a *ngFor="let phone of contact.additionalPhones" href="tel:{{phone}}">{{phone}}<br></a>
+        <hr>
+    </ng-container>
+
+    <ng-container *ngIf="contact.email">
+        <h5>Email: </h5>
+        <a href="mailto:{{contact.email}}">{{contact.email}}</a>
+        <hr>
+    </ng-container>
+
+    <button (click)="onDelete()" class="btn btn-danger">Delete</button>
+
+</ng-container>
+
+<ng-template #loading>
+    <img src="assets/spinner.svg" alt="spinner">
+</ng-template>
+

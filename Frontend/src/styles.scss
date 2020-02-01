@@ -1,0 +1,14 @@
+body {
+    position: relative;
+    min-height: 100vh;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 80px;
+}
+
+.ng-touched.ng-invalid:not(form) {
+    border-left: 5px solid red;
+}
+
+form span.text-danger {
+    display: block;
+}
